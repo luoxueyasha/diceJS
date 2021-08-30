@@ -6,24 +6,46 @@ function getDiceElement() {
   let nums = document.getElementById("num").value;
   let maxval = document.getElementById("maxval").value;
   let addon = document.getElementById("addon").value;
+  var str = "";
   nums = Math.round(nums);
   maxval = Math.round(maxval);
   addon = Math.round(addon);
   let result = Dice(nums, maxval, addon); //结果数组
-  //字符串拼接
-  let str = nums + "d" + maxval;
-  if (addon != 0) {
-    str += "+" + addon;
-  }
-  if (result.length <= 20) {
-    //骰子详细数值的显示
-    str += "=" + arrayToPlus(result);
-
+  if (result >= 1 || result <= 0) {
+    //用小数确定报错
+    //字符串拼接
+    str = nums + "d" + maxval;
     if (addon != 0) {
       str += "+" + addon;
     }
+    if (result.length <= 20) {
+      //骰子详细数值的显示
+      str += "=" + arrayToPlus(result);
+
+      if (addon != 0) {
+        str += "+" + addon;
+      }
+    }
+    str += "=" + (eval(result.join("+")) + addon);
+  } else {
+    switch (result) {
+      case 0.01:
+        str = "骰子个数不能小于等于0";
+        break;
+      case 0.02:
+        str = "最大值不能小于等于0";
+        break;
+      case 0.03:
+        str = "一次投掷的骰子太多了";
+        break;
+      case 0.04:
+        str = "单个骰子的数值太大了";
+        break;
+      default:
+        str = "未知错误。";
+        break;
+    }
   }
-  str += "=" + (eval(result.join("+")) + addon);
   str += "\n本次随机的时间为：";
   let d = +new Date(); //get minsec - plus/minus deal to values not number
   d = timestampToTime(d);
@@ -37,20 +59,20 @@ function Dice(nums, maxval, addon) {
   //随机数
   let ret = new Array();
   if (nums <= 0) {
-    alert("骰子个数不能小于等于0");
-    return 0;
+    //alert("骰子个数不能小于等于0");
+    return 0.010;
   }
   if (maxval <= 0) {
-    alert("最大值不能小于等于0");
-    return 0;
+    //alert("最大值不能小于等于0");
+    return 0.020;
   }
-  if (nums > 100) {
-    alert("一次投掷的骰子太多了");
-    return 0;
+  if (nums > 1000) {
+    //alert("一次投掷的骰子太多了");
+    return 0.030;
   }
-  if (maxval > 3000) {
-    alert("单个骰子的数值太大了");
-    return 0;
+  if (maxval > 5000) {
+    //alert("单个骰子的数值太大了");
+    return 0.040;
   }
   //如果多于一个骰子，则输出所有的骰子数目
   //所以ret需要重新定义，还需要接入对应的格式显示函数
