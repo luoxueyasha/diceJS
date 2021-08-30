@@ -1,0 +1,23 @@
+body{
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+button{
+    min-width: 75px;
+    min-height: 50px;
+    font-size:20px;
+    margin-left:5px;
+    margin-right:15px;
+}
+input{
+    margin-top: 10px;
+    margin-right: 5px;
+    min-height: 30px;
+    max-height: 50px;
+    font-size: 20px;
+    max-width: 150px;
+    min-width: 50px;
+    text-align: center;
+}
+

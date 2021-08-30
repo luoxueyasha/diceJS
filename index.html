@@ -1,0 +1,35 @@
+<!--
+  Dice JS by luoxueyasha
+  https://github.com/luoxueyasha/diceJS
+  The code is shared under GPLv2.0 licence.
+
+  icon by neonio from https://www.pixiv.net/artworks/68140895
+  The copyright of the icon belongs to the original author
+-->
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset=utf-8 />
+    <link href = "./style.css" rel="stylesheet" type="text/css" />
+    <link href = "./eve_icon.png" rel= "icon"  sizes="32*32" />
+    <script src = "./script.js"></script>
+    <title>test</title>
+  </head>
+  <body>
+    <div>
+      <div class="inputbox">
+        <input type="number" id="num" value="1"></input>d<br />
+        <input type="number" id="maxval" value="100"></input>+<br />
+        <input type="number" id="addon" value="0"></input>
+      </div><br />
+      <button onclick="getDiceElement()">
+        Dice！
+      </button>
+      <button onclick="toPasteBoard()">
+        内容输出到剪贴板
+      </button><br /><br />
+      <div id="result" class="result"></div><br />
+      <div id="clipResult"></div>
+    </div>
+  </body>
+</html>
